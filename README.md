@@ -18,7 +18,7 @@ A Node.js command-line application that takes in information about employees on 
 - [Questions](#questions)
 
 ## Installation
-Download code, run "init npm" in the terminal, then "npm install inquirer" and "npm install jest".
+Download code, run "npm init" in the terminal, then "npm install inquirer" and "npm install jest".
 
 ## Usage
 The application can be invoked by using the command "node index" from terminal.
