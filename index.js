@@ -1,32 +1,32 @@
 /*
-Uses the Inquirer package (Links to an external site.).
-Uses the Jest package (Links to an external site.) for a suite of unit tests.
-
-The application must have these classes: Employee, Manager, Engineer, and Intern.
-The first class is an Employee parent class with the following properties and methods:
-name
-id
-email
-getName()
-getId()
-getEmail()
-getRole() // Returns 'Employee'
-
-The other three classes will extend Employee.
-
-In addition to Employee's properties and methods, Manager will also have:
-officeNumber
-getRole() // Overridden to return 'Manager'
-
-In addition to Employee's properties and methods, Engineer will also have:
-github // GitHub username
-getGithub()
-getRole() // Overridden to return 'Engineer'
-
-In addition to Employee's properties and methods, Intern will also have:
-school
-getSchool()
-getRole() // Overridden to return 'Intern'
-
 Finally, adding validation to ensure that user input provided is in the proper expected format.
 */
+
+// include packages needed for this application
+const fs = require("fs");
+const inquirer = require("inquirer");
+
+// promisify returns responses in a promise object vs a callback function
+const util = require("util");
+const writeFileAsync = util.promisify(fs.writeFile);
+const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+
+class Questionnaire{
+startQuestions() {
+  inquirer
+    .prompt({
+      type: 'text',
+      name: 'employeename',
+      message: 'What is the Manager\'s name?'
+    })
+    .then(({ name }) => {
+      this.manager = new Manager(name);
+      console.log(employee.name);
+    })
+    };
+}
+
+new Questionnaire().startQuestions();
