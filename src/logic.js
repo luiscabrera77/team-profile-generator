@@ -1,16 +1,18 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
-const util = require('util');
+const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
-const generateHTML = require('./src/template');
+const generateHTML = require('./template');
 
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 let fullTeam = [];
 
-function addManager() {
+class Logic {
+
+addManager() {
   inquirer
     .prompt([
       {
@@ -39,7 +41,7 @@ function addManager() {
   };
 
 // More team members
-function askForMore() {
+askForMore() {
   inquirer
     .prompt([
       {
@@ -64,7 +66,7 @@ function askForMore() {
     });
 }
 
-function addEngineer() {
+addEngineer() {
   inquirer
     .prompt([
       {
@@ -92,7 +94,7 @@ function addEngineer() {
     });
 }
 
-function addIntern() {
+addIntern() {
   inquirer
     .prompt([
       {
@@ -120,12 +122,13 @@ function addIntern() {
     });
 }
 
-function endTeam() {
+async endTeam() {
   console.log("Your team is done!")
   console.log(fullTeam);
   const generateContent = generateHTML(fullTeam);
-  writeFileAsync('./dist/index.html', generateContent);
+  writeFileAsync('../dist/index.html', generateContent);
   console.log('HTML succesfully generated.');
 };
+}
 
-addManager();
+module.exports = Logic;

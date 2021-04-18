@@ -1,14 +1,20 @@
-
+// include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const util = require('util');
+const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
-const generateHTML = require('./src/template');
+const generateHTML = require('./template');
 
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+//const path = require('path');
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 let fullTeam = [];
+
+// build array with the team
+const allQuestions = () => {
+  return addManager();
+}
 
 function addManager() {
   inquirer
@@ -34,6 +40,7 @@ function addManager() {
       const {employee_name, employee_id, employee_email, manager_office} = data
       const teamMember = new Manager(employee_name, employee_id, employee_email, manager_office);
       fullTeam.push(teamMember);
+      console.log(teamMember);
       askForMore();
     });
   };
@@ -122,10 +129,25 @@ function addIntern() {
 
 function endTeam() {
   console.log("Your team is done!")
-  console.log(fullTeam);
-  const generateContent = generateHTML(fullTeam);
-  writeFileAsync('./dist/index.html', generateContent);
-  console.log('HTML succesfully generated.');
 };
 
-addManager();
+const startQuestions = () => {
+  allQuestions();
+  console.log(fullTeam);
+  return (fullTeam);
+};
+
+// create a function to initialize app and write HTML file
+async function init() {
+  try {
+      const info = await startQuestions();
+      const generateContent = generateHTML(info);
+      await writeFileAsync('../dist/index.html', generateContent);
+      console.log('HTML succesfully generated.');
+  } catch (err) {
+      console.log(err);
+  }
+}
+init();
+
+module.exports = logic;
