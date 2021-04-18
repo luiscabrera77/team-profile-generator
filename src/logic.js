@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
-const util = require("util");
+const util = require('util');
 const writeFileAsync = util.promisify(fs.writeFile);
 const generateHTML = require('./template');
 
@@ -10,9 +10,7 @@ const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
 let fullTeam = [];
 
-class Logic {
-
-addManager() {
+function addManager() {
   inquirer
     .prompt([
       {
@@ -34,14 +32,12 @@ addManager() {
     ])
     .then(function (data) {
       const {employee_name, employee_id, employee_email, manager_office} = data
-      const teamMember = new Manager(employee_name, employee_id, employee_email, manager_office);
-      fullTeam.push(teamMember);
+      fullTeam.push(new Manager(employee_name, employee_id, employee_email, manager_office))
       askForMore();
     });
   };
 
-// More team members
-askForMore() {
+function askForMore() {
   inquirer
     .prompt([
       {
@@ -66,7 +62,7 @@ askForMore() {
     });
 }
 
-addEngineer() {
+function addEngineer() {
   inquirer
     .prompt([
       {
@@ -88,13 +84,12 @@ addEngineer() {
     ])
     .then(function (data) {
       const {employee_name, employee_id, employee_email, engineer_github} = data
-      const teamMember = new Engineer(employee_name, employee_id, employee_email, engineer_github);
-      fullTeam.push(teamMember)
+      fullTeam.push(new Engineer(employee_name, employee_id, employee_email, engineer_github))
       askForMore();
     });
 }
 
-addIntern() {
+function addIntern() {
   inquirer
     .prompt([
       {
@@ -116,19 +111,17 @@ addIntern() {
     ])
     .then(function (data) {
       const {employee_name, employee_id, employee_email, intern_school} = data
-      const teamMember = new Intern(employee_name, employee_id, employee_email, intern_school);
-      fullTeam.push(teamMember)
+      fullTeam.push(new Intern(employee_name, employee_id, employee_email, intern_school))
       askForMore();
     });
 }
 
-async endTeam() {
+function endTeam() {
   console.log("Your team is done!")
   console.log(fullTeam);
   const generateContent = generateHTML(fullTeam);
   writeFileAsync('../dist/index.html', generateContent);
   console.log('HTML succesfully generated.');
 };
-}
 
-module.exports = Logic;
+module.exports.addManager = addManager();

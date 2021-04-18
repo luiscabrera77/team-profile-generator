@@ -1,14 +1,11 @@
+// Receive full team array
 function generateHTML(fullTeam) {
+// Create array for non-managers cards
   let cardSet = [];
     for (let i = 1; i < fullTeam.length; i++) {
-      
-      if (fullTeam[i].role == "Engineer") {
-        let image =`engineer`}
-      else {
-        let image =`intern`}; 
-
       let cardPart =`
       <div class="col-xl-3 col-sm-6 mb-2">`
+      // Engineering or Intern image 
       if (fullTeam[i].role == "Engineer") {
         cardPart +=`
         <div class="bg-white rounded shadow-sm pt-5 pb-2 px-4"><img src="./assets/img/engineer.gif" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -23,6 +20,7 @@ function generateHTML(fullTeam) {
       <ul class="list-group mb-0 mt-3 list-group-flush">
       <li class="list-group-item borderless"><span class="small text-uppercase text-muted">ID: ${fullTeam[i].id}</span></li>
       `;
+      // Engineers get a GitHub link, Interns a School Row
       if (fullTeam[i].role == "Engineer") {
         cardPart +=`
         <li class="list-group-item borderless"><span class="small text-uppercase text-muted">GitHub: <a href="https://github.com/${fullTeam[i].github}" class="link">${fullTeam[i].github}</a></span></li>
@@ -39,7 +37,10 @@ function generateHTML(fullTeam) {
       `;
       cardSet.push(cardPart);
     };
+  // Remove the commas from the array
   let cards = cardSet.join('');
+
+  // Dump the entire HTML and the cards created
   return `
   <!DOCTYPE html>
   <html lang="en">
