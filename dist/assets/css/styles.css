@@ -1,0 +1,40 @@
+body {
+  background: #e8cbc0;
+  background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+  background: linear-gradient(to right, #e8cbc0, #636fa4);
+  min-height: 100vh;
+}
+
+.link {
+  color: #6e65da;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.link:hover, .link:focus {
+  text-decoration: none;
+  color: #6e65da;
+}
+
+.mailicon {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  display: inline;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.mailicon:hover {
+  color: #6e65da;
+}
+
+li.borderless {
+  border-top: 0 none;
+  border-bottom: 0 none;
+}
