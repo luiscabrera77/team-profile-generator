@@ -7,7 +7,8 @@
 
 A Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. 
 
-![Screenshot](copy here URL of your app screenshot)
+Walkthrough video:
+![Screenshot](https://drive.google.com/file/d/1QcMBHlWU-eMp9RUFxwcR7DYNwk9OFa99/view)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -53,7 +54,7 @@ If you would like to contribute to this project:
 **Please keep it ES6, use classes and comment your code.**
 
 ## Tests
-Use command "npm run test" from terminal.
+Install JEST, and use command "npm run test" from terminal.
 
 ## Acceptance Criteria
 - GIVEN a command-line application that accepts user input
